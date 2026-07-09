@@ -4,7 +4,7 @@ public class EnvioInternacional implements EstrategiaEnvio {
         return (pesoKg*6)+10;
     }
     @Override
-    public boolean esCargoUnico(){
+    public boolean esRecargoUnico(){
         return true;
     }
 }
