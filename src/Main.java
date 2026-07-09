@@ -7,7 +7,8 @@ public class Main {
 
 
         empresaMensajeria empresa = new empresaMensajeria();
-        paqueteFragil paqueteFragild = new paqueteFragil("SBEAS",20);
+        paqueteFragil paqueteFragild = new paqueteFragil("SEBAS",20);
+        empresa.addPaquete(paqueteFragild);
 
         boolean continuar = true;
 
@@ -30,8 +31,12 @@ public class Main {
                         case 1:
                             System.out.println("ingresa el nombre del destinatario");
                             String nombreDestinatario = sc.next();
+
                             System.out.println("ingresa el peso del pedido");
                             double peso = sc.nextDouble();
+                            if (peso <=0){
+                                System.out.println("No se puede");
+                            }
 
                             paqueteEstandard paqueteEstandard = new paqueteEstandard(nombreDestinatario, peso);
                             empresa.addPaquete(paqueteEstandard);
