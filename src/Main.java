@@ -9,6 +9,9 @@ public class Main {
         empresaMensajeria empresa = new empresaMensajeria();
         paqueteFragil paqueteFragild = new paqueteFragil("SBEAS",20);
 
+        paqueteFragil paqueteFragilG = new paqueteFragil("Lalo",12);
+        empresa.addPaquete(paqueteFragilG);
+
         boolean continuar = true;
 
         do {
