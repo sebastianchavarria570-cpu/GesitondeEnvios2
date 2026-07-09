@@ -7,6 +7,7 @@ public class Main {
 
 
         empresaMensajeria empresa = new empresaMensajeria();
+        paqueteFragil paqueteFragild = new paqueteFragil("SBEAS",20);
 
         boolean continuar = true;
 
