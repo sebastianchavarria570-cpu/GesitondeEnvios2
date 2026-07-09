@@ -1,32 +1,18 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        EstrategiaEnvio estandar = new EnvioEstandar();
+        EstrategiaEnvio expres = new EnvioExpres();
+        EstrategiaEnvio internacional = new EnvioInternacional();
 
-        empresaMensajeria empresa = new empresaMensajeria();
+        double peso = 5;
 
-        System.out.println("-----MENU-------");
-        System.out.println("1. ingresar nuevo pedido");
-        System.out.println("2. ver reporte");
-        System.out.println("0. salir");
-        int opcion = 0;
+        System.out.println("Prueba");
+        System.out.println("Peso: "+peso+" kg");
+        System.out.println("Envio estandar: $"+estandar.calcularCosto(peso));
+        System.out.println("Envio expres: $"+expres.calcularCosto(peso));
+        System.out.println("Envio internacional: $"+internacional.calcularCosto(peso));
 
-        boolean seguir = true;
-
-//        do {
-//            switch (opcion) {
-//                case 1:
-//                    System.out.println("Ingresa el nombre del destinatario");
-//                    String nombre = sc.next();
-//                    System.out.println("Ingresa el peso del pedido");
-//                    double peso = sc.nextDouble();
-//
-//                    }
-//            }
-//
-//        }while (seguir);
-
-
+        System.out.println("Internacional tiene recargo unico? "+internacional.esRecargoUnico());
+        System.out.println("Estandar tiene recargo unico? "+estandar.esRecargoUnico());
     }
 }
