@@ -1,6 +1,6 @@
 public class EnvioEstandar implements EstrategiaEnvio {
     @Override
     public double calcularCosto (double pesoKg) {
-        return 3+1;
+        return pesoKg*2.0;
     }
 }
