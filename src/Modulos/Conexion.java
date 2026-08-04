@@ -7,7 +7,7 @@ public class Conexion {
 
         private static String server = "localhost";
         private static String port = "1433";
-        private static String database = "ALUMNOS_POO";
+        private static String database = "ENVIOS_POO";
         private static String user = "sa";
         private static String password = "1234";
 
