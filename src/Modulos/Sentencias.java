@@ -35,7 +35,7 @@ public class Sentencias {
 
     public List <Tipos> mostrarTodos() throws Exception {
         String sql = "SELECT * FROM ENVIOS";
-        List <Tipos> listaTipos = new ArrayList<>();
+        List <Tipos> lista = new ArrayList<>();
         try (
                 Connection conn = Conexion.getConnection();
                 Statement stmt = conn.createStatement();
@@ -51,10 +51,10 @@ public class Sentencias {
                         rs.getString("paquete"),
                         rs.getDouble("costo")
                 );
-                listaTipos.add(envio);
+                lista.add(envio);
             }
         }
-        return listaTipos;
+        return lista;
     }
 
 
