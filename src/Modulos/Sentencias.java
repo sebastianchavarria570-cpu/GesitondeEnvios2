@@ -51,8 +51,9 @@ public class Sentencias {
     }
 
 
-    public void mostrarEnviosMayoresAPeso(double pesoLimite) throws Exception {
+    public List<Tipos> mostrarEnviosMayoresAPeso(double pesoLimite) throws Exception {
         String sql = "SELECT * FROM ENVIOS WHERE peso >= ?";
+        List<Tipos> lista = new ArrayList<>();
         try (
                 Connection conn = Conexion.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)
@@ -61,9 +62,18 @@ public class Sentencias {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                System.out.println(rs);
+                Tipos envio = new Tipos(
+                        rs.getInt("id"),
+                        rs.getString("Destinatario"),
+                        rs.getDouble("peso"),
+                        rs.getString("envio"),
+                        rs.getString("paquete"),
+                        rs.getDouble("costo")
+                );
+                lista.add(envio);
             }
         }
+        return lista;
     }
 
 
