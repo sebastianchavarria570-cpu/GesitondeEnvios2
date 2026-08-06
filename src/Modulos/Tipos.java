@@ -25,6 +25,9 @@ public class Tipos {
         this.costo = costo;
     }
 
+    public Tipos() {
+    }
+
     public int getId() {
         return id;
     }

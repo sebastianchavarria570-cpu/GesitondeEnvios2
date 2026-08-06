@@ -117,20 +117,24 @@ public class Sentencias {
     }
 
 
-    public void contarPorTipoEnvio() throws Exception {
+    public List<Tipos> contarPorTipoEnvio() throws Exception {
         String sql = "SELECT envio, COUNT(*) AS total FROM ENVIOS GROUP BY envio";
+        List<Tipos> resultados = new ArrayList<>();
         try (
                 Connection conn = Conexion.getConnection();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)
         ) {
-            System.out.println("\n--- CONTEO POR TIPO DE ENVÍO ---");
             while (rs.next()) {
                 String tipoEnvio = rs.getString("envio");
                 int total = rs.getInt("total");
-                System.out.println("Tipo de envío: " + tipoEnvio + " | Cantidad: " + total);
+                Tipos tipo= new Tipos();
+                tipo.setEnvio(tipoEnvio);
+                tipo.setCosto(total);
+                resultados.add(tipo);
             }
         }
+        return resultados;
     }
 
 
