@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sentencias {
-    public void save(Tipos envioObj) throws Exception {
-        String sql = "INSERT INTO ENVIOS (Destinatario, peso, envio, paquete, costo) VALUES (?, ?, ?, ?, ?) Statement.RETURN_GENERATED_KEYS";
+    public boolean save(Tipos envioObj) throws Exception {
+        String sql = "INSERT INTO ENVIOS (Destinatario, peso, envio, paquete, costo) VALUES (?, ?, ?, ?, ?) ";
         try (
                 Connection conn = Conexion.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql)
+                PreparedStatement stmt = conn.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
         ) {
             stmt.setString(1, envioObj.Destinatario);
             stmt.setDouble(2, envioObj.peso);
@@ -20,12 +20,19 @@ public class Sentencias {
             stmt.setDouble(5, envioObj.costo);
             stmt.executeUpdate();
 
-            ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()) {
-                envioObj.id = rs.getInt(1);
+            int filas = stmt.executeUpdate();
+
+            if (filas > 0) {
+                ResultSet rs = stmt.getGeneratedKeys();
+                if (rs.next()) {
+                    envioObj.id = rs.getInt(1);
+                }
+                return true;
             }
         }
+        return false;
     }
+
     public List <Tipos> mostrarTodos() throws Exception {
         String sql = "SELECT * FROM ENVIOS";
         List <Tipos> listaTipos = new ArrayList<>();
