@@ -77,7 +77,7 @@ public class Sentencias {
     }
 
 
-    public void delete(int id) throws Exception {
+    public boolean delete(int id) throws Exception {
         String sql = "DELETE FROM ENVIOS WHERE id = ?";
         try (
                 Connection conn = Conexion.getConnection();
@@ -85,16 +85,12 @@ public class Sentencias {
         ) {
             statement.setInt(1, id);
             int filasAfectadas = statement.executeUpdate();
-            if (filasAfectadas > 0) {
-                System.out.println("Envio eliminado correctamente.");
-            } else {
-                System.out.println("No se encontró ningún envío con ese ID.");
-            }
+            return filasAfectadas > 0;
         }
     }
 
 
-    public void actualizar(Tipos envioObj) throws Exception {
+    public boolean actualizar(Tipos envioObj) throws Exception {
         String sql = "UPDATE ENVIOS SET Destinatario = ?, peso = ?, envio = ?, paquete = ?, costo = ? WHERE id = ?";
         try (
                 Connection conn = Conexion.getConnection();
@@ -108,12 +104,9 @@ public class Sentencias {
             stmt.setInt(6, envioObj.id);
 
             int filasAfectadas = stmt.executeUpdate();
-            if (filasAfectadas > 0) {
-                System.out.println("Envío actualizado correctamente.");
-            } else {
-                System.out.println("No se encontró el envío para actualizar.");
-            }
+            return filasAfectadas >0;
         }
+
     }
 
 
