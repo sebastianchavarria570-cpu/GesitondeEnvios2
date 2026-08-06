@@ -48,7 +48,31 @@ public class Main {
                         double peso2 = sc.nextDouble();
                         var mayorpeso = sentencias.mostrarEnviosMayoresAPeso(peso2);
                                 imprimir.imprimirLista(mayorpeso);
+                                break;
+                    case 4:
+                        System.out.println("ingresa el id a actualizar");
+                        int id = sc.nextInt();
+                        System.out.println("ingreasa el nombre del destinatario");
+                        String nombre2 = sc.nextLine();
+                        System.out.println("ingresa el peso del envio");
+                        double peso3 = sc.nextDouble();
+                        sc.nextLine();
+                        System.out.println("ingresa el tipo de envio");
+                        String envio2 = sc.nextLine();
+                        System.out.println("ingresa el tipo de paquete");
+                        String paquete2 = sc.nextLine();
+                        System.out.println("ingresa el costo del envio");
+                        double costo2 = sc.nextDouble();
+
+                        Tipos envioact = new Tipos(nombre2, peso3, envio2, paquete2, costo2);
+                        boolean actualizado = sentencias.actualizar(envioact);
+                        if(actualizado == true){
+                            System.out.println("Se ha actualizado el envio");
+                        }else  {
+                            System.out.println("No se ha actualizado el envio");
+                        }
                 }
+
 
             }
 
