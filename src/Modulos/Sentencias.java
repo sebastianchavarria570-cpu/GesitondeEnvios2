@@ -3,12 +3,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Sentencias {
     public void save(Tipos envioObj) throws Exception {
-        String sql = "INSERT INTO ENVIOS (Destinatario, peso, envio, paquete, costo) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ENVIOS (Destinatario, peso, envio, paquete, costo) VALUES (?, ?, ?, ?, ?) Statement.RETURN_GENERATED_KEYS";
         try (
                 Connection conn = Conexion.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
+                PreparedStatement stmt = conn.prepareStatement(sql)
         ) {
             stmt.setString(1, envioObj.Destinatario);
             stmt.setDouble(2, envioObj.peso);
@@ -23,8 +26,9 @@ public class Sentencias {
             }
         }
     }
-    public void mostrarTodos() throws Exception {
+    public List <Tipos> mostrarTodos() throws Exception {
         String sql = "SELECT * FROM ENVIOS";
+        List <Tipos> listaTipos = new ArrayList<>();
         try (
                 Connection conn = Conexion.getConnection();
                 Statement stmt = conn.createStatement();
@@ -32,9 +36,18 @@ public class Sentencias {
         ) {
 
             while (rs.next()) {
-                System.out.println(rs);
+                Tipos envio = new Tipos(
+                        rs.getInt("id"),
+                        rs.getString("Destinatario"),
+                        rs.getDouble("peso"),
+                        rs.getString("envio"),
+                        rs.getString("paquete"),
+                        rs.getDouble("costo")
+                );
+                listaTipos.add(envio);
             }
         }
+        return listaTipos;
     }
 
 
