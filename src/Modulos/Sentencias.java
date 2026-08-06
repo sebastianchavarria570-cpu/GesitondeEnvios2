@@ -18,7 +18,6 @@ public class Sentencias {
             stmt.setString(3, envioObj.envio);
             stmt.setString(4, envioObj.paquete);
             stmt.setDouble(5, envioObj.costo);
-            stmt.executeUpdate();
 
             int filas = stmt.executeUpdate();
 

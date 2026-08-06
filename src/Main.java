@@ -3,6 +3,7 @@ import Modulos.Sentencias;
 import Modulos.Tipos;
 
 import java.sql.SQLOutput;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -29,9 +30,11 @@ public class Main {
                         String paquete = sc.nextLine();
                         System.out.printf("ingresa el costo del envio");
                         double costo = sc.nextDouble();
+                        sc.nextLine();
 
                         Tipos nuevoEnvio = new Tipos(nombre, peso, envio, paquete, costo);
                         boolean save =sentencias.save(nuevoEnvio);
+
                         if(save == true){
                             System.out.println("Se ha guardado el envio");
                         }else {
@@ -52,6 +55,7 @@ public class Main {
                     case 4:
                         System.out.println("ingresa el id a actualizar");
                         int id = sc.nextInt();
+                        sc.nextLine();
                         System.out.println("ingreasa el nombre del destinatario");
                         String nombre2 = sc.nextLine();
                         System.out.println("ingresa el peso del envio");
@@ -63,8 +67,9 @@ public class Main {
                         String paquete2 = sc.nextLine();
                         System.out.println("ingresa el costo del envio");
                         double costo2 = sc.nextDouble();
+                        sc.nextLine();
 
-                        Tipos envioact = new Tipos(nombre2, peso3, envio2, paquete2, costo2);
+                        Tipos envioact = new Tipos(id,nombre2, peso3, envio2, paquete2, costo2);
                         boolean actualizado = sentencias.actualizar(envioact);
                         if(actualizado == true){
                             System.out.println("Se ha actualizado el envio");
@@ -83,8 +88,8 @@ public class Main {
                             }
                             break;
                     case 6:
-                        var conteo = sentencias.contarPorTipoEnvio();
-                        imprimir.imprimirLista(conteo);
+                        List<Tipos> conteo = sentencias.contarPorTipoEnvio();
+                        imprimir.imprimirConteo(conteo);
                         break;
                     case 7:
                        int total = sentencias.contarTotalEnvios();
