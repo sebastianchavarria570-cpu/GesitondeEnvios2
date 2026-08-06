@@ -71,12 +71,36 @@ public class Main {
                         }else  {
                             System.out.println("No se ha actualizado el envio");
                         }
+                        break;
+                        case 5:
+                            System.out.println(" ingresa el id a eliminar");
+                            int idDelete = sc.nextInt();
+                            boolean eliminado = sentencias.delete(idDelete);
+                            if(eliminado == true){
+                                System.out.println("Se ha eliminado el envio");
+                            }else  {
+                                System.out.println("No se ha eliminado el envio");
+                            }
+                            break;
+                    case 6:
+                        var conteo = sentencias.contarPorTipoEnvio();
+                        imprimir.imprimirLista(conteo);
+                        break;
+                    case 7:
+                       int total = sentencias.contarTotalEnvios();
+                        System.out.println(" el numero de envios es " + total);
+                        break;
+                    case 0:
+                        System.out.println("saliendo");
+                        continuar = false;
+                        break;
+                        default:
+                            System.out.println("seleccion opcion valida");
+                            break;
                 }
 
 
             }
-
-
 
         }catch(Exception e){
             System.out.println("Error");
